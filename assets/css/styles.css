@@ -127,8 +127,8 @@ section{padding:72px 0;}
 .dropdown-panel a:hover{background:var(--color-bg-alt);color:var(--color-navy-dark);}
 .header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .lang-switch{display:flex;border:1px solid var(--color-border);border-radius:999px;overflow:hidden;}
-.lang-switch button{border:none;background:transparent;padding:6px 10px;font-size:.72rem;font-weight:700;cursor:pointer;color:var(--color-ink-soft);}
-.lang-switch button.active{background:var(--color-navy);color:#fff;}
+.lang-switch a{border:none;background:transparent;padding:6px 10px;font-size:.72rem;font-weight:700;cursor:pointer;color:var(--color-ink-soft);}
+.lang-switch a.active{background:var(--color-navy);color:#fff;}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--color-navy);margin:5px 0;}
 
@@ -325,8 +325,6 @@ th{color:var(--color-navy-dark);font-family:var(--font-serif);}
 .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
 .pill-list{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;}
 .pill-list li{background:var(--color-bg-alt);padding:8px 16px;border-radius:999px;font-size:.85rem;font-weight:600;margin:0;}
-.lang-notice{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--color-navy-dark);color:#fff;padding:12px 20px;border-radius:999px;font-size:.85rem;box-shadow:var(--shadow-l);z-index:200;}
-.lang-notice.show{display:block;}
 
 /* Portal app-shell */
 .portal-banner{background:var(--color-gold);color:#3a2a06;text-align:center;padding:10px 16px;font-size:.85rem;font-weight:700;}

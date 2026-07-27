@@ -18,47 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* Language switcher — swaps chrome strings via data-i18n, shows honest "in progress" note for body copy */
-  var dict = {
-    de: {},
-    en: {
-      'nav.betriebe': 'For Companies', 'nav.kandidaten': 'For Candidates', 'nav.ueberuns': 'About Us',
-      'nav.wissen': 'Knowledge', 'nav.kontakt': 'Contact', 'nav.login': 'Login',
-      'cta.betrieb': 'I need trainees', 'cta.kandidat': 'I want to train in Germany',
-      'lang.notice': 'Navigation is available in English. Full page translations for this section are on the Phase-2 roadmap — content below is still shown in German.'
-    },
-    id: {
-      'nav.betriebe': 'Untuk Perusahaan', 'nav.kandidaten': 'Untuk Calon Peserta', 'nav.ueberuns': 'Tentang Kami',
-      'nav.wissen': 'Pengetahuan', 'nav.kontakt': 'Kontak', 'nav.login': 'Masuk',
-      'cta.betrieb': 'Saya butuh peserta magang', 'cta.kandidat': 'Saya ingin ausbildung di Jerman',
-      'lang.notice': 'Menu navigasi sudah tersedia dalam Bahasa Indonesia. Terjemahan lengkap halaman ini menyusul pada Fase 2 — konten di bawah masih ditampilkan dalam bahasa Jerman.'
-    }
-  };
-  var langButtons = document.querySelectorAll('.lang-switch button');
-  var notice = document.querySelector('.lang-notice');
-  function applyLang(lang) {
-    langButtons.forEach(function (b) { b.classList.toggle('active', b.dataset.lang === lang); });
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var key = el.getAttribute('data-i18n');
-      if (lang === 'de') {
-        if (el.dataset.deOriginal) el.textContent = el.dataset.deOriginal;
-      } else {
-        if (!el.dataset.deOriginal) el.dataset.deOriginal = el.textContent;
-        if (dict[lang][key]) el.textContent = dict[lang][key];
-      }
-    });
-    if (notice) {
-      if (lang === 'de') { notice.classList.remove('show'); }
-      else { notice.textContent = dict[lang]['lang.notice']; notice.classList.add('show'); clearTimeout(window._langT); window._langT = setTimeout(function(){ notice.classList.remove('show'); }, 6000); }
-    }
-    try { localStorage.setItem('nb-lang', lang); } catch (e) {}
-  }
-  langButtons.forEach(function (b) {
-    b.addEventListener('click', function () { applyLang(b.dataset.lang); });
-  });
-  var saved = (function () { try { return localStorage.getItem('nb-lang'); } catch (e) { return null; } })();
-  if (saved && saved !== 'de') applyLang(saved);
-
   /* Tabs component (process visualisation etc.) */
   document.querySelectorAll('.tabs').forEach(function (tabs) {
     var group = tabs.dataset.group;
