@@ -112,8 +112,9 @@ section{padding:72px 0;}
 .brand svg{flex-shrink:0;}
 .brand small{display:block;font-family:var(--font-sans);font-weight:600;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--color-terracotta-dark);}
 .main-nav{display:flex;align-items:center;gap:2px;flex:1;position:relative;}
-.main-nav > ul{display:flex;list-style:none;margin:0;padding:0;gap:2px;flex-wrap:wrap;}
-.main-nav > ul > li{position:relative;}
+.main-nav > ul{display:flex;list-style:none;margin:0;padding:0;gap:2px;flex-wrap:nowrap;}
+.main-nav > ul > li{position:relative;flex-shrink:0;}
+.nav-link{white-space:nowrap;}
 .nav-link{display:inline-flex;align-items:center;gap:4px;padding:10px 12px;border-radius:8px;font-size:.92rem;font-weight:600;color:var(--color-ink);}
 .nav-link:hover,.nav-link.active{background:var(--color-bg-alt);color:var(--color-navy-dark);}
 .nav-caret{font-size:.65em;opacity:.6;}
@@ -353,19 +354,27 @@ th{color:var(--color-navy-dark);font-family:var(--font-serif);}
   .kanban{grid-template-columns:repeat(5,220px);}
   .two-col{grid-template-columns:1fr;}
 }
-@media (max-width:760px){
-  .header-inner{flex-wrap:wrap;row-gap:8px;gap:12px;}
-  .header-actions{flex-wrap:wrap;gap:8px;}
-  .brand small{display:none;}
+/* Nav switches to the hamburger menu well before the full nav would ever
+   wrap or compress (measured need: ~1600px for every label + the lang
+   switch + login + CTA at once, all on one line with no shrinking) — this
+   breakpoint must stay comfortably above that, not tied to the narrow-phone
+   breakpoint below. */
+@media (max-width:1680px){
   .main-nav{display:none;}
   .nav-toggle{display:block;}
   .site-header.open .main-nav{
     display:flex;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;
     border-bottom:1px solid var(--color-border);padding:12px;box-shadow:var(--shadow-m);
   }
-  .site-header.open .main-nav > ul{flex-direction:column;width:100%;}
+  .site-header.open .main-nav > ul{flex-direction:column;width:100%;flex-wrap:nowrap;}
   .dropdown-panel{position:static;box-shadow:none;border:none;display:none;padding-left:12px;}
   .dropdown.open .dropdown-panel{display:flex;}
+}
+
+@media (max-width:760px){
+  .header-inner{flex-wrap:wrap;row-gap:8px;gap:12px;}
+  .header-actions{flex-wrap:wrap;gap:8px;}
+  .brand small{display:none;}
   .segment-cards,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
   .form-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
