@@ -121,14 +121,26 @@ section{padding:72px 0;}
 .dropdown{position:relative;}
 .dropdown-panel{
   position:absolute;top:100%;left:0;min-width:280px;background:#fff;border:1px solid var(--color-border);
-  border-radius:var(--radius-m);box-shadow:var(--shadow-l);padding:16px 10px 10px;display:none;flex-direction:column;gap:2px;
+  border-radius:var(--radius-m);box-shadow:var(--shadow-l);padding:16px 10px 10px;display:flex;flex-direction:column;gap:2px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .18s ease,visibility 0s linear .22s;
 }
 /* No margin-top gap above: a real gap between the nav-link and the panel
    is dead space the mouse has to cross without triggering :hover on
    .dropdown, so moving slowly through it closes the menu before you
    arrive. The panel now sits flush (top:100%) and uses padding-top
-   instead, keeping the same visual breathing room without a dead zone. */
-.dropdown:hover .dropdown-panel,.dropdown:focus-within .dropdown-panel{display:flex;}
+   instead, keeping the same visual breathing room without a dead zone.
+
+   Closing also uses a short grace period (opacity/visibility fade with a
+   delay) instead of an instant display:none — a plain :hover toggle has
+   zero tolerance for the mouse briefly leaving the hoverable shape (a
+   corner, a diagonal move, a moment of hesitation), which reads as
+   "closes too fast". The panel now stays interactable for ~0.2s after
+   the mouse leaves, so it only fully closes if you don't come back. */
+.dropdown:hover .dropdown-panel,.dropdown:focus-within .dropdown-panel{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transition:opacity .12s ease,visibility 0s linear 0s;
+}
 .dropdown-panel a{padding:9px 12px;border-radius:8px;font-size:.88rem;font-weight:600;color:var(--color-ink-soft);}
 .dropdown-panel a:hover{background:var(--color-bg-alt);color:var(--color-navy-dark);}
 .header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
@@ -372,7 +384,10 @@ th{color:var(--color-navy-dark);font-family:var(--font-serif);}
     border-bottom:1px solid var(--color-border);padding:12px;box-shadow:var(--shadow-m);
   }
   .site-header.open .main-nav > ul{flex-direction:column;width:100%;flex-wrap:nowrap;}
-  .dropdown-panel{position:static;box-shadow:none;border:none;display:none;padding-left:12px;}
+  .dropdown-panel{
+    position:static;box-shadow:none;border:none;display:none;padding-left:12px;
+    opacity:1;visibility:visible;pointer-events:auto;transition:none;
+  }
   .dropdown.open .dropdown-panel{display:flex;}
 }
 
