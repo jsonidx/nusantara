@@ -106,16 +106,16 @@ section{padding:72px 0;}
 }
 .header-inner{
   max-width:var(--maxw);margin:0 auto;padding:14px 24px;
-  display:flex;align-items:center;gap:24px;
+  display:flex;align-items:center;gap:16px;
 }
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-serif);font-weight:700;font-size:1.15rem;color:var(--color-navy-dark);flex-shrink:0;}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--font-serif);font-weight:700;font-size:1.05rem;color:var(--color-navy-dark);flex-shrink:0;}
 .brand svg{flex-shrink:0;}
 .brand small{display:block;font-family:var(--font-sans);font-weight:600;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--color-terracotta-dark);}
 .main-nav{display:flex;align-items:center;gap:2px;flex:1;position:relative;}
 .main-nav > ul{display:flex;list-style:none;margin:0;padding:0;gap:2px;flex-wrap:nowrap;}
 .main-nav > ul > li{position:relative;flex-shrink:0;}
 .nav-link{white-space:nowrap;}
-.nav-link{display:inline-flex;align-items:center;gap:4px;padding:10px 12px;border-radius:8px;font-size:.92rem;font-weight:600;color:var(--color-ink);}
+.nav-link{display:inline-flex;align-items:center;gap:3px;padding:9px 8px;border-radius:8px;font-size:.86rem;font-weight:600;color:var(--color-ink);}
 .nav-link:hover,.nav-link.active{background:var(--color-bg-alt);color:var(--color-navy-dark);}
 .nav-caret{font-size:.65em;opacity:.6;}
 .dropdown{position:relative;}
@@ -126,9 +126,9 @@ section{padding:72px 0;}
 .dropdown:hover .dropdown-panel,.dropdown:focus-within .dropdown-panel{display:flex;}
 .dropdown-panel a{padding:9px 12px;border-radius:8px;font-size:.88rem;font-weight:600;color:var(--color-ink-soft);}
 .dropdown-panel a:hover{background:var(--color-bg-alt);color:var(--color-navy-dark);}
-.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .lang-switch{display:flex;border:1px solid var(--color-border);border-radius:999px;overflow:hidden;}
-.lang-switch a{border:none;background:transparent;padding:6px 10px;font-size:.72rem;font-weight:700;cursor:pointer;color:var(--color-ink-soft);}
+.lang-switch a{border:none;background:transparent;padding:5px 8px;font-size:.7rem;font-weight:700;cursor:pointer;color:var(--color-ink-soft);}
 .lang-switch a.active{background:var(--color-navy);color:#fff;}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--color-navy);margin:5px 0;}
@@ -355,11 +355,11 @@ th{color:var(--color-navy-dark);font-family:var(--font-serif);}
   .two-col{grid-template-columns:1fr;}
 }
 /* Nav switches to the hamburger menu well before the full nav would ever
-   wrap or compress (measured need: ~1600px for every label + the lang
+   wrap or compress (measured need: ~1180px for every label + the lang
    switch + login + CTA at once, all on one line with no shrinking) — this
-   breakpoint must stay comfortably above that, not tied to the narrow-phone
-   breakpoint below. */
-@media (max-width:1680px){
+   breakpoint must stay comfortably above that so normal 1280px+ laptop
+   screens get the full single-row nav, not the mobile menu. */
+@media (max-width:1220px){
   .main-nav{display:none;}
   .nav-toggle{display:block;}
   .site-header.open .main-nav{
